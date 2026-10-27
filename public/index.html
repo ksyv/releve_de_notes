@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Holberton - Relevé de Notes</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background-color: #f3f4f6; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .card { background: white; padding: 40px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); width: 100%; max-width: 400px; text-align: center; }
+        h2 { color: #111827; margin-top: 0; }
+        p { color: #6b7280; margin-bottom: 25px; line-height: 1.5; }
+        input { width: 100%; padding: 12px 15px; margin-bottom: 20px; border: 1px solid #d1d5db; border-radius: 6px; box-sizing: border-box; font-size: 16px; outline: none; }
+        input:focus { border-color: #E74C3C; box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.2); }
+        button { width: 100%; background-color: #E74C3C; color: white; border: none; padding: 12px; font-size: 16px; font-weight: bold; border-radius: 6px; cursor: pointer; transition: background-color 0.2s; }
+        button:hover { background-color: #c0392b; }
+        .loading { display: none; margin-top: 15px; color: #6b7280; font-size: 14px; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <img src="/logo.png" alt="Logo" style="max-width: 250px; margin-bottom: 15px;">
+        <h2>Relevés de notes</h2>
+        <p>Entrez l'ID Holberton de l'étudiant pour générer et télécharger son relevé de notes au format PDF.</p>
+        
+        <form action="/generate" method="POST" onsubmit="showLoading()">
+            <input type="text" name="student_id" placeholder="ID de l'étudiant (ex: 1234)" required>
+            <button type="submit" id="submitBtn">Générer le PDF</button>
+        </form>
+        <div id="loading" class="loading">Création du document en cours... ⏳</div>
+    </div>
+
+    <script>
+        function showLoading() {
+            document.getElementById('submitBtn').disabled = true;
+            document.getElementById('submitBtn').style.backgroundColor = '#9ca3af';
+            document.getElementById('loading').style.display = 'block';
+            
+            setTimeout(() => {
+                document.getElementById('submitBtn').disabled = false;
+                document.getElementById('submitBtn').style.backgroundColor = '#E74C3C';
+                document.getElementById('loading').style.display = 'none';
+            }, 5000);
+        }
+    </script>
+</body>
+</html>
